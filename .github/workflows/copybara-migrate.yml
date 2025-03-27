@@ -1,0 +1,43 @@
+name: Copybara Migration Workflow
+
+on:
+  push:
+    branches:
+      - master  # Trigger the workflow on pushes to the master branch
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest  # Using Ubuntu as the base image
+
+    steps:
+    - name: Checkout the source repository
+      uses: actions/checkout@v2
+      with:
+        repository: "kahlon1005/copybara-source"  # Source repository
+        ref: "master"  # Branch to use
+
+    - name: Checkout the destination repository
+      uses: actions/checkout@v2
+      with:
+        repository: "kahlon1005/copybara-target"  # Destination repository
+        ref: "master"  # Branch to use
+        path: destination  # This will checkout to the 'destination' folder
+
+    - name: Install Java (Required for Copybara)
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'  # Specify the Java version for Copybara (update as needed)
+        distribution: 'adoptopenjdk'
+
+    - name: Install Copybara
+      run: |
+        # Install Copybara by downloading and extracting the latest release
+        mkdir -p $HOME/bin
+        curl -L https://github.com/google/copybara/releases/download/v2.6.0/copybara-2.6.0-linux-x86_64.tar.gz | tar -xz -C $HOME/bin
+
+    - name: Run Copybara Migration
+      run: |
+        # Run the copybara migration command
+        export PATH=$PATH:$HOME/bin
+        cd destination  # Change to the destination repo
+        copybara migrate --config ../copy.bara.sky  # Ensure the correct path to your configuration file
