@@ -1,5 +1,5 @@
-sourceUrl = "git@github.com:kahlon1005/copybara-source.git"
-destinationUrl = "git@github.com:kahlon1005/copybara-target.git"
+sourceUrl = "https://github.com/kahlon1005/copybara-source.git"
+destinationUrl = "https://github.com/kahlon1005/copybara-target.git"
 
 core.workflow(
     name = "default",
@@ -13,7 +13,7 @@ core.workflow(
         push = "master",
     ),
     destination_files = glob(["external/**"]),
-    authoring = authoring.pass_thru("Copybara <copybara@example.com>"),
+    authoring = authoring.pass_thru("Copybara kahlon1005@gmail.com"),
     transformations = [
         core.move("", "external"),
     ],
