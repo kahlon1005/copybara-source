@@ -21,7 +21,6 @@ jobs:
       with:
         repository: "kahlon1005/copybara-target"  # Destination repository
         ref: "master"  # Branch to use
-        path: destination  # This will checkout to the 'destination' folder
 
     - name: Install Java 23 (Eclipse Temurin)
       uses: actions/setup-java@v2
