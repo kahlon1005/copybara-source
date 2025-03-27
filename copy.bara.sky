@@ -15,6 +15,11 @@ core.workflow(
     destination_files = glob(["external/**"]),
     authoring = authoring.pass_thru("Copybara <kahlon1005@gmail.com>"),
     transformations = [
-        core.move("", "external"),
+    	core.replace(
+    	before = "external/**",
+    	after = "",
+    	regex_groups = {},
+		),
+        ##core.move("", "external"),
     ],
 )
