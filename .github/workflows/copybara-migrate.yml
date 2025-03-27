@@ -23,11 +23,11 @@ jobs:
         ref: "master"  # Branch to use
         path: destination  # This will checkout to the 'destination' folder
 
-    - name: Install Java (AdoptOpenJDK)
+    - name: Install Java 23 (Eclipse Temurin)
       uses: actions/setup-java@v2
       with:
-        java-version: '11'  # Specify the Java version for Copybara (update as needed)
-        distribution: 'adoptopenjdk'  # Use AdoptOpenJDK distribution (AdoptOpenJDK is now Eclipse Adoptium)
+        java-version: '23'  # Specify the Java version as 23
+        distribution: 'temurin'  # Eclipse Temurin distribution for Java 23
 
     - name: Install Copybara
       run: |
