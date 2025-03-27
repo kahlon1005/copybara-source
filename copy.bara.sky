@@ -1,21 +1,20 @@
-# copy.bara.sky
+sourceUrl = "git@github.com:kahlon1005/copybara-source.git"
+destinationUrl = "ssh://git@github.com/danielepolencic/monorepo.git"
 
-load("@copybara//java:copybara.bzl", "java_mirror")
-
-# Define the source and destination repositories
-origin = git.origin("https://github.com/kahlon1005/copybara-source.git")  # Your source repository
-destination = git.github_pr_destination(
-    "https://github.com/kahlon1005/copybara-target.git",  # Your target repository
-    github_api="https://api.github.com", 
-    pr_title="Mirroring Changes to Pull Requests",
-    pr_body="Automatic PR for mirroring changes from source repo."
-)
-
-# Configure the transformation for Java files
-java_mirror(
-    name = "java_mirror_example",
-    origin = origin,
-    destination = destination,
-    paths = ["src/main/java/com/github/roche/capt/**/*.java", "pom.xml"],
-    # Optionally, define other transformations
+core.workflow(
+    name = "default",
+    origin = git.origin(
+        url = sourceUrl,
+        ref = "master",
+    ),
+    destination = git.destination(
+        url = destinationUrl,
+        fetch = "master",
+        push = "master",
+    ),
+    destination_files = glob(["external/**"]),
+    authoring = authoring.pass_thru("Copybara <copybara@example.com>"),
+    transformations = [
+        core.move("", "external"),
+    ],
 )
