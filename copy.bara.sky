@@ -15,10 +15,10 @@ core.workflow(
         body = "this is a sample pull request",
         integrates = [],
     ),
-    destination_files = glob(["external/**"]),
+    destination_files = glob(["**"]),
 	authoring = authoring.pass_thru("Copybara <kahlon1005@gmail.com>"),    
     transformations = [		
-		core.move("external", ""),
+		core.move("external", "", glob(["**"]),True),
 		
     ],
 )
