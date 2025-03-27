@@ -23,11 +23,11 @@ jobs:
         ref: "master"  # Branch to use
         path: destination  # This will checkout to the 'destination' folder
 
-    - name: Install Java (Required for Copybara)
+    - name: Install Java (Eclipse Adoptium)
       uses: actions/setup-java@v2
       with:
         java-version: '11'  # Specify the Java version for Copybara (update as needed)
-        distribution: 'adoptopenjdk'
+        distribution: 'adoptium'  # Use Eclipse Adoptium distribution for OpenJDK
 
     - name: Install Copybara
       run: |
