@@ -1,5 +1,5 @@
 sourceUrl = "git@github.com:kahlon1005/copybara-source.git"
-destinationUrl = "ssh://git@github.com/danielepolencic/monorepo.git"
+destinationUrl = "git@github.com:kahlon1005/copybara-target.git"
 
 core.workflow(
     name = "default",
