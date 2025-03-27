@@ -46,7 +46,7 @@ jobs:
       run: |
         git config --global user.name "Copybara Workflow"
         git config --global user.email "kahlon1005@gmail.com"
-      
+
     - name: Set up GitHub authentication using PAT
       run: |
         git config --global credential.helper store
