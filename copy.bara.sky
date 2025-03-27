@@ -15,14 +15,10 @@ core.workflow(
         body = "this is a sample pull request",
         integrates = [],
     ),
-    destination_files = glob(["**"]),
+    destination_files = glob(["external/**"]),
 	authoring = authoring.pass_thru("Copybara <kahlon1005@gmail.com>"),    
     transformations = [
-        core.replace(
-            before = "external/**",  # Files inside 'external'
-            after = "",  # Your replacement content here
-            regex_groups = {},  # Optional regex groups if you need them
-        )
+        core.move("", "external"),
 		
     ],
 )
