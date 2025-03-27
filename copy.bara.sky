@@ -13,7 +13,7 @@ core.workflow(
         push = "master",
     ),
     destination_files = glob(["external/**"]),
-    authoring = authoring.pass_thru("Copybara kahlon1005@gmail.com"),
+    authoring = authoring.pass_thru("Copybara <kahlon1005@gmail.com>"),
     transformations = [
         core.move("", "external"),
     ],
