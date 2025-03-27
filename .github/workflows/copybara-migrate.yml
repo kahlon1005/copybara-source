@@ -9,6 +9,9 @@ jobs:
   migrate:
     runs-on: ubuntu-latest  # Using Ubuntu as the base image
 
+    permissions:
+      contents: write  # Allow write access to contents (for pushing to repositories)
+
     steps:
     - name: Checkout the source repository
       uses: actions/checkout@v2
