@@ -43,7 +43,12 @@ jobs:
       run: |
         git config --global user.name "Copybara Workflow"
         git config --global user.email "kahlon1005@gmail.com"
-          
+      
+    - name: Set up GitHub authentication
+      run: |
+        git config --global credential.helper store
+        echo "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com" > ~/.git-credentials
+
     - name: Run Copybara Migration
       run: |
         # Ensure the path to the copy.bara.sky is correct and run the Copybara migration
