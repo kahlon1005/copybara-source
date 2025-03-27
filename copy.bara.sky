@@ -6,19 +6,23 @@ core.workflow(
     origin = git.origin(
         url = sourceUrl,
         ref = "master",
-    ),    
-	destination = git.github_pr_destination(
-        url = destinationUrl,
-        destination_ref = "master",
-        pr_branch = "from_public_repo",
-        title = "pr from external public repo",
-        body = "this is a sample pull request",
-        integrates = [],
     ),
+    destination = git.destination(
+        url = destinationUrl,
+        fetch = "master",
+        push = "master",
+    ),
+    # Adjusting the glob pattern to target only the external folder
     destination_files = glob(["external/**"]),
-	authoring = authoring.pass_thru("Copybara <kahlon1005@gmail.com>"),    
+    authoring = authoring.pass_thru("Copybara <kahlon1005@gmail.com>"),
     transformations = [
-        core.move("", "external")		
+        # Replace an actual pattern, for example, replace "foo" with "bar"
+        core.replace(
+            before = "foo",  # Define the text you want to replace
+            after = "bar",   # Define the replacement text
+            regex_groups = {},
+            path = glob(include = ["external/**"]),  # Only target files in the 'external' folder
+        ),
+        # Other transformations (such as move) can be added here
     ],
 )
-
