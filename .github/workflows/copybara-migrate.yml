@@ -29,15 +29,12 @@ jobs:
         java-version: '23'  # Specify the Java version as 23
         distribution: 'temurin'  # Eclipse Temurin distribution for Java 23
 
-    - name: Install Copybara
+    - name: Download copybara_deploy.jar
       run: |
-        # Install Copybara by downloading and extracting the latest release
-        mkdir -p $HOME/bin
-        curl -L https://github.com/google/copybara/archive/refs/tags/v20250224.tar.gz | tar -xz -C $HOME/bin
+        # Download copybara_deploy.jar from the specified release
+        curl -L https://github.com/google/copybara/releases/download/v20250224/copybara_deploy.jar -o $HOME/copybara_deploy.jar
 
     - name: Run Copybara Migration
       run: |
-        # Run the copybara migration command
-        export PATH=$PATH:$HOME/bin
-        cd destination  # Change to the destination repo
-        copybara migrate --config ../copy.bara.sky  # Ensure the correct path to your configuration file
+        # Run the Copybara migration using the downloaded copybara_deploy.jar
+        java -jar $HOME/copybara_deploy.jar migrate --config $GITHUB_WORKSPACE/copy.bara.sky  # Ensure the correct path to your configuration file
