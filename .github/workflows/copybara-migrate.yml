@@ -33,7 +33,7 @@ jobs:
       run: |
         # Install Copybara by downloading and extracting the latest release
         mkdir -p $HOME/bin
-        curl -L https://github.com/google/copybara/releases/download/v2.6.0/copybara-2.6.0-linux-x86_64.tar.gz | tar -xz -C $HOME/bin
+        curl -L https://github.com/google/copybara/archive/refs/tags/v20250224.tar.gz | tar -xz -C $HOME/bin
 
     - name: Run Copybara Migration
       run: |
